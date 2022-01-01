@@ -27,8 +27,6 @@ export default function StudentsView({ data }) {
 
   const students = Object.keys(tempStudents).sort();
 
-  console.log({ events, students });
-
   return (
     <PageWrapper>
       <Stack gap={4} sx={{ py: 8 }}>

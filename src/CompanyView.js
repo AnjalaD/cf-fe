@@ -9,7 +9,6 @@ export default function CompanyView({ data }) {
 
   const onChange = (_, value) => {
     setSelected(value);
-    console.log(value);
   };
 
   const tempCompanys = {};
