@@ -19,7 +19,7 @@ export default function HomeView() {
       >
         <Stack gap={4}>
           <Typography variant="h2" align="center" color="white">
-            Career Fair 2021
+            Career Fair 2022
           </Typography>
           <Typography variant="body" align="center" color="white">
             Department of Computer Science & Engineering
