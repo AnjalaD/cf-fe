@@ -1,47 +1,32 @@
-import FullCalendar from "@fullcalendar/react"; // must go before plugins
-import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
-import timeGridPlugin from "@fullcalendar/timegrid";
-import listPlugin from "@fullcalendar/list";
+import { ViewState } from "@devexpress/dx-react-scheduler";
+import {
+  Scheduler,
+  DayView,
+  Appointments,
+  DateNavigator,
+  Toolbar,
+} from "@devexpress/dx-react-scheduler-material-ui";
+import { Paper, Typography } from "@mui/material";
 
 export default function Calender({ events, showData }) {
+  if (!showData || events.lenght === 0) {
+    return (
+      <Paper sx={{ py: 8, backgroundColor: "white", color: "black" }}>
+        <Typography variant="body1" align="center">
+          <i>{!showData ? "Please select an option" : "No events"}</i>
+        </Typography>
+      </Paper>
+    );
+  }
   return (
-    <div className="w-100 bg-white" style={{ position: "relative" }}>
-      {(!showData || events.lenght === 0) && (
-        <div
-          className="w-100 h-100 bg-dark"
-          style={{ position: "absolute", top: 0, left: 0, zIndex: 1000 }}
-        >
-          <p
-            className="text-white text-center w-100"
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: 0,
-              zIndex: 1000,
-            }}
-          >
-            {!showData ? "Please select an option" : "No events"}
-          </p>
-        </div>
-      )}
-      <FullCalendar
-        nowIndicator
-        defaultView="dayGridMonth"
-        headerToolbar={{
-          left: "prev,next",
-          center: "title",
-          right: "timeGridWeek,timeGridDay,listDay",
-        }}
-        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
-        events={events}
-        visibleRange={{
-          start: "2022-01-04",
-          end: "2022-01-05",
-        }}
-        initialView="timeGridDay"
-        initialDate="2022-01-04"
-        themeSystem="bootstrap"
-      />
-    </div>
+    <Paper sx={{ backgroundColor: "white" }}>
+      <Scheduler data={events}>
+        <ViewState defaultCurrentDate="2022-01-04" />
+        <Toolbar />
+        <DateNavigator />
+        <DayView startDayHour={8} endDayHour={18} />
+        <Appointments />
+      </Scheduler>
+    </Paper>
   );
 }

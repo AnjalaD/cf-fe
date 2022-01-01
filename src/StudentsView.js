@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Stack } from "react-bootstrap";
+import { Autocomplete, Container, Stack, TextField } from "@mui/material";
 import Calender from "./Calender";
 import { decodeTime } from "./helpers";
 import PageWrapper from "./PageWrapper";
@@ -7,8 +7,8 @@ import PageWrapper from "./PageWrapper";
 export default function StudentsView({ data }) {
   const [selected, setSelected] = useState();
 
-  const onChange = (e) => {
-    setSelected(e.target.value);
+  const onChange = (_, value) => {
+    setSelected(value);
   };
 
   const tempStudents = {};
@@ -18,8 +18,8 @@ export default function StudentsView({ data }) {
     if (selected === student_id) {
       events.push({
         title: company,
-        start: decodeTime(start_t),
-        end: decodeTime(end_t),
+        startDate: decodeTime(start_t),
+        endDate: decodeTime(end_t),
       });
     }
     tempStudents[student_id] = 1;
@@ -31,25 +31,18 @@ export default function StudentsView({ data }) {
 
   return (
     <PageWrapper>
-      <Stack gap={4} className="w-100 py-5">
-        <Form.Group
-          className="w-100 text-white mb-3 mx-auto"
-          style={{ maxWidth: 500 }}
-        >
-          <Form.Label>Student ID</Form.Label>
-          <Form.Select onChange={onChange}>
-            <option value="">Select Student ID</option>
-            {students.map((id) => (
-              <option key={id} value={id}>
-                {id}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+      <Stack gap={4} sx={{ py: 8 }}>
+        <Container maxWidth="sm">
+          <Autocomplete
+            onChange={onChange}
+            options={students}
+            renderInput={(params) => (
+              <TextField {...params} variant="filled" label="Student ID" />
+            )}
+          />
+        </Container>
 
-        <div className="w-100 bg-white rounded">
-          <Calender events={events} showData={selected && selected !== ""} />
-        </div>
+        <Calender events={events} showData={selected && selected !== ""} />
       </Stack>
     </PageWrapper>
   );

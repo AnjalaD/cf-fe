@@ -1,18 +1,17 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Box, Container } from "@mui/material";
 import bgImage from "./bg.jpg";
 
 export default function PageWrapper({ children }) {
   return (
-    <div style={{ background: `url(${bgImage})` }}>
+    <Box sx={{ background: `url(${bgImage})` }}>
       <Container
-        className="d-flex flex-column"
-        style={{
+        sx={{
           minHeight: "100vh",
         }}
       >
         {children}
       </Container>
-    </div>
+    </Box>
   );
 }
