@@ -9,7 +9,8 @@ function App() {
 
   const fetchData = () => {
     fetch(
-      "https://raw.githubusercontent.com/kdsuneraavinash/cf-timetable-json/master/data.json"
+      "https://raw.githubusercontent.com/kdsuneraavinash/cf-timetable-json/master/data.json",
+      { cache: "no-store" }
     )
       .then((res) => res.json())
       .then((res) => setData(res));
