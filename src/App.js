@@ -8,11 +8,15 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/kdsuneraavinash/cf-timetable-json/master/data.json"
-    )
-      .then((res) => res.json())
-      .then((res) => setData(res));
+    const t = setInterval(() => {
+      fetch(
+        "https://raw.githubusercontent.com/kdsuneraavinash/cf-timetable-json/master/data.json"
+      )
+        .then((res) => res.json())
+        .then((res) => setData(res));
+    }, 30000);
+
+    return () => clearInterval(t);
   }, []);
 
   return (
