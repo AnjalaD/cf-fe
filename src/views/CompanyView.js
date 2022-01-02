@@ -4,7 +4,7 @@ import Calender from "../components/Calender";
 import { decodeTime } from "../helpers";
 import PageWrapper from "../components/PageWrapper";
 
-export default function CompanyView({ data }) {
+export default function CompanyView({ data, lastUpdated }) {
   const [selected, setSelected] = useState();
 
   const onChange = (_, value) => {
@@ -35,7 +35,7 @@ export default function CompanyView({ data }) {
     .map((key) => ({ label: key, ...tempCompanys[key] }));
 
   return (
-    <PageWrapper>
+    <PageWrapper lastUpdated={lastUpdated}>
       <Stack gap={4} sx={{ py: 8 }}>
         <Container maxWidth="sm">
           <Autocomplete
