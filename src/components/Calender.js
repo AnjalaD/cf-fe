@@ -22,7 +22,7 @@ function ToolTipConent({ appointmentData, ...rest }) {
             <CalendarToday />
           </Grid>
           <Grid item xs={10}>
-            <Link href={appointmentData.link} target="_blank">
+            <Link href={appointmentData.link} target="_blank" color="#1155ff">
               Add to Google Calender
             </Link>
           </Grid>
