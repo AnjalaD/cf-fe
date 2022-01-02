@@ -10,7 +10,27 @@ import {
   CurrentTimeIndicator,
   ViewSwitcher,
 } from "@devexpress/dx-react-scheduler-material-ui";
-import { Paper, Typography } from "@mui/material";
+import { CalendarToday } from "@material-ui/icons";
+import { Grid, Link, Paper, Typography } from "@mui/material";
+
+function ToolTipConent({ appointmentData, ...rest }) {
+  return (
+    <AppointmentTooltip.Content {...rest} appointmentData={appointmentData}>
+      {appointmentData.link && (
+        <Grid container alignItems="center">
+          <Grid item xs={2} textAlign="center" color="gray">
+            <CalendarToday />
+          </Grid>
+          <Grid item xs={10}>
+            <Link href={appointmentData.link} target="_blank">
+              Add to Google Calender
+            </Link>
+          </Grid>
+        </Grid>
+      )}
+    </AppointmentTooltip.Content>
+  );
+}
 
 export default function Calender({ events, showData }) {
   if (!showData || events.lenght === 0) {
@@ -35,7 +55,7 @@ export default function Calender({ events, showData }) {
         <DayView startDayHour={8} endDayHour={18} />
         <WeekView startDayHour={8} endDayHour={18} />
         <Appointments />
-        <AppointmentTooltip showCloseButton />
+        <AppointmentTooltip showCloseButton contentComponent={ToolTipConent} />
         <CurrentTimeIndicator />
       </Scheduler>
     </Paper>

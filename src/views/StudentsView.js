@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Autocomplete, Container, Stack, TextField } from "@mui/material";
 import Calender from "../components/Calender";
-import { decodeTime } from "../helpers";
+import { createCalenderLink, decodeTime } from "../helpers";
 import PageWrapper from "../components/PageWrapper";
 
 export default function StudentsView({ data, lastUpdated }) {
@@ -16,10 +16,15 @@ export default function StudentsView({ data, lastUpdated }) {
   const events = [];
   data.forEach(({ company, end_t, start_t, student_id, panel }) => {
     if (selected === student_id) {
+      const title = company + " - Panel:" + panel;
+      const startDate = decodeTime(start_t);
+      const endDate = decodeTime(end_t);
+
       events.push({
-        title: company + " - Panel:" + panel,
-        startDate: decodeTime(start_t),
-        endDate: decodeTime(end_t),
+        title,
+        startDate,
+        endDate,
+        link: createCalenderLink({ title, startDate, endDate }),
       });
     }
     tempStudents[student_id] = 1;
