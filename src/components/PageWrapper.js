@@ -12,7 +12,7 @@ export default function PageWrapper({ children, lastUpdated }) {
       >
         {lastUpdated && (
           <Typography variant="body1" align="right" color="white">
-            Last updated: {lastUpdated}
+            {lastUpdated}
           </Typography>
         )}
         {children}

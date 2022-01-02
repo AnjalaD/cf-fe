@@ -17,14 +17,14 @@ function App() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch(
-        "https://raw.githubusercontent.com/kdsuneraavinash/cf-timetable-json/master/data.json",
-        { cache: "no-store" }
-      )
+      fetch("https://naughty-yonath-793e17.netlify.app/data_v2.json", {
+        cache: "no-store",
+      })
         .then((res) => res.json())
         .then((res) => {
           setError();
-          setData(res);
+          setData(res.data);
+          setLastUpdated(res.updated);
         })
         .catch(() => {
           setError(
@@ -32,18 +32,6 @@ function App() {
             <br/>
             <strong>Please check you internet connection</strong>`
           );
-        });
-
-      fetch(
-        "https://api.github.com/repos/kdsuneraavinash/cf-timetable-json/commits?sha=master&path=data.json&page=1&per_page=1",
-        { cache: "no-store" }
-      )
-        .then((res) => res.json())
-        .then((res) => {
-          if (res?.length && res[0]?.commit?.committer?.date) {
-            const date = res[0].commit.committer.date;
-            setLastUpdated(moment(date).format("YYYY-MM-DD HH:mm:ss"));
-          }
         });
     };
 
