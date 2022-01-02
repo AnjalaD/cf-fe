@@ -21,6 +21,5 @@ export function createCalenderLink({
 }) {
   const start = startDate.format("YYYYMMDDThhmmssZ");
   const end = endDate.format("YYYYMMDDThhmmssZ");
-  console.log({ start, end });
   return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${location}&output=xml`;
 }
