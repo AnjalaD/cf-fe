@@ -1,7 +1,7 @@
 import { Alert, AlertTitle, Box, Container, Fade } from "@mui/material";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import CompanyView from "./views/CompanyView";
 import HomeView from "./views/HomeView";
 import StudentsView from "./views/StudentsView";
@@ -25,7 +25,6 @@ function App() {
         .then((res) => {
           setError();
           setData(res);
-          setLastUpdated(moment().format("YYYY-MM-DD HH:mm:ss"));
         })
         .catch(() => {
           setError(
@@ -33,6 +32,18 @@ function App() {
             <br/>
             <strong>Please check you internet connection</strong>`
           );
+        });
+
+      fetch(
+        "https://api.github.com/repos/kdsuneraavinash/cf-timetable-json/commits?sha=master&path=data.json&page=1&per_page=1",
+        { cache: "no-store" }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          if (res?.length && res[0]?.commit?.committer?.date) {
+            const date = res[0].commit.committer.date;
+            setLastUpdated(moment(date).format("YYYY-MM-DD HH:mm:ss"));
+          }
         });
     };
 
@@ -66,6 +77,7 @@ function App() {
             path="/company"
             element={<CompanyView data={data} lastUpdated={lastUpdated} />}
           />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </>
