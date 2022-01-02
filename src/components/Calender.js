@@ -44,6 +44,11 @@ export default function Calender({ events, showData }) {
     );
   }
 
+  const defaultView = localStorage.getItem("defaultView") || "Week";
+  const onViewChange = (view) => {
+    localStorage.setItem("defaultView", view);
+  };
+
   const defaultDate = moment("2022-01-04").isSameOrBefore("2022-01-04")
     ? "2022-01-04"
     : "2022-01-05";
@@ -53,7 +58,8 @@ export default function Calender({ events, showData }) {
       <Scheduler data={events}>
         <ViewState
           defaultCurrentDate={defaultDate}
-          defaultCurrentViewName="Day"
+          defaultCurrentViewName={defaultView}
+          onCurrentViewNameChange={onViewChange}
         />
         <Toolbar />
         <ViewSwitcher />
