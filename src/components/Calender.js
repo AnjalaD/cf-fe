@@ -3,8 +3,10 @@ import {
   Scheduler,
   DayView,
   Appointments,
+  AppointmentTooltip,
   DateNavigator,
   Toolbar,
+  CurrentTimeIndicator,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { Paper, Typography } from "@mui/material";
 
@@ -26,6 +28,8 @@ export default function Calender({ events, showData }) {
         <DateNavigator />
         <DayView startDayHour={8} endDayHour={18} />
         <Appointments />
+        <AppointmentTooltip showCloseButton />
+        <CurrentTimeIndicator />
       </Scheduler>
     </Paper>
   );

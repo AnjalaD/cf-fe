@@ -14,10 +14,10 @@ export default function StudentsView({ data, lastUpdated }) {
   const tempStudents = {};
 
   const events = [];
-  data.forEach(({ company, end_t, start_t, student_id }) => {
+  data.forEach(({ company, end_t, start_t, student_id, panel }) => {
     if (selected === student_id) {
       events.push({
-        title: company,
+        title: company + " - Panel:" + panel,
         startDate: decodeTime(start_t),
         endDate: decodeTime(end_t),
       });
