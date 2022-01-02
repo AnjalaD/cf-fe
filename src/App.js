@@ -1,11 +1,13 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CompanyView from "./CompanyView";
-import HomeView from "./HomeView";
-import StudentsView from "./StudentsView";
+import CompanyView from "./views/CompanyView";
+import HomeView from "./views/HomeView";
+import StudentsView from "./views/StudentsView";
 
 function App() {
   const [data, setData] = useState([]);
+  const [lastUpdated, setLastUpdated] = useState();
 
   const fetchData = () => {
     fetch(
@@ -13,7 +15,10 @@ function App() {
       { cache: "no-store" }
     )
       .then((res) => res.json())
-      .then((res) => setData(res));
+      .then((res) => {
+        setData(res);
+        setLastUpdated(moment().format("YYYY-MM-DD HH:mm:ss"));
+      });
   };
 
   useEffect(() => {
@@ -26,8 +31,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/students" element={<StudentsView data={data} />} />
-        <Route path="/company" element={<CompanyView data={data} />} />
+        <Route
+          path="/students"
+          element={<StudentsView data={data} lastUpdated={lastUpdated} />}
+        />
+        <Route
+          path="/company"
+          element={<CompanyView data={data} lastUpdated={lastUpdated} />}
+        />
       </Routes>
     </BrowserRouter>
   );

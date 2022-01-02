@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Autocomplete, Container, Stack, TextField } from "@mui/material";
-import Calender from "./Calender";
-import { decodeTime } from "./helpers";
-import PageWrapper from "./PageWrapper";
+import Calender from "../components/Calender";
+import { decodeTime } from "../helpers";
+import PageWrapper from "../components/PageWrapper";
 
 export default function CompanyView({ data }) {
   const [selected, setSelected] = useState();

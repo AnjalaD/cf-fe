@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import PageWrapper from "./PageWrapper";
+import PageWrapper from "../components/PageWrapper";
 
 export default function HomeView() {
   return (

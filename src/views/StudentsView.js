@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Autocomplete, Container, Stack, TextField } from "@mui/material";
-import Calender from "./Calender";
-import { decodeTime } from "./helpers";
-import PageWrapper from "./PageWrapper";
+import Calender from "../components/Calender";
+import { decodeTime } from "../helpers";
+import PageWrapper from "../components/PageWrapper";
 
-export default function StudentsView({ data }) {
+export default function StudentsView({ data, lastUpdated }) {
   const [selected, setSelected] = useState();
 
   const onChange = (_, value) => {
@@ -28,7 +28,7 @@ export default function StudentsView({ data }) {
   const students = Object.keys(tempStudents).sort();
 
   return (
-    <PageWrapper>
+    <PageWrapper lastUpdated={lastUpdated}>
       <Stack gap={4} sx={{ py: 8 }}>
         <Container maxWidth="sm">
           <Autocomplete
