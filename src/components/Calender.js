@@ -12,6 +12,7 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { CalendarToday } from "@material-ui/icons";
 import { Grid, Link, Paper, Typography } from "@mui/material";
+import moment from "moment";
 
 function ToolTipConent({ appointmentData, ...rest }) {
   return (
@@ -42,11 +43,16 @@ export default function Calender({ events, showData }) {
       </Paper>
     );
   }
+
+  const defaultDate = moment("2022-01-04").isSameOrBefore("2022-01-04")
+    ? "2022-01-04"
+    : "2022-01-05";
+
   return (
     <Paper sx={{ backgroundColor: "white" }}>
       <Scheduler data={events}>
         <ViewState
-          defaultCurrentDate="2022-01-04"
+          defaultCurrentDate={defaultDate}
           defaultCurrentViewName="Day"
         />
         <Toolbar />
