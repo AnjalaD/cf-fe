@@ -46,7 +46,18 @@ export default function CompanyView({ data }) {
               return option.label === value.label;
             }}
             renderInput={(params) => (
-              <TextField {...params} variant="filled" label="Company & Panel" />
+              <TextField
+                {...params}
+                variant="filled"
+                label="Company & Panel"
+                inputProps={{
+                  ...params.inputProps,
+                  style: {
+                    ...params.inputProps.style,
+                    color: "white",
+                  },
+                }}
+              />
             )}
           />
         </Container>

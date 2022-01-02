@@ -35,7 +35,18 @@ export default function StudentsView({ data, lastUpdated }) {
             onChange={onChange}
             options={students}
             renderInput={(params) => (
-              <TextField {...params} variant="filled" label="Student ID" />
+              <TextField
+                {...params}
+                variant="filled"
+                label="Student ID"
+                inputProps={{
+                  ...params.inputProps,
+                  style: {
+                    ...params.inputProps.style,
+                    color: "white",
+                  },
+                }}
+              />
             )}
           />
         </Container>
