@@ -51,6 +51,8 @@ export default function FindFreeSlotsView({ data, lastUpdated }) {
         title: student_id + " | " + company + " - Panel:" + panel,
         startDate: decodeTime(start_t),
         endDate: decodeTime(end_t),
+        bg:
+          sCompany?.company === company && sCompany?.panel === panel && "#f91",
       });
     }
     tempStudents[student_id] = 1;
