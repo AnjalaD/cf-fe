@@ -15,8 +15,6 @@ import { Grid, Link, Paper, Typography } from "@mui/material";
 import moment from "moment";
 
 function AppointmentComponent({ children, data, style, ...restProps }) {
-  console.log({ restProps });
-
   return (
     <Appointments.Appointment
       {...restProps}
