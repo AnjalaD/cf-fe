@@ -84,7 +84,6 @@ export default function FindFreeSlotsView({ data, lastUpdated }) {
         });
       }
       s = freeTimeslots[i];
-      console.log({ s });
     }
   }
 
@@ -98,8 +97,6 @@ export default function FindFreeSlotsView({ data, lastUpdated }) {
   const companys = Object.keys(tempCompanys)
     .sort()
     .map((key) => ({ label: key, ...tempCompanys[key] }));
-
-  console.log({ freeTimeslots });
 
   return (
     <PageWrapper lastUpdated={lastUpdated}>
