@@ -1,5 +1,9 @@
 import moment from "moment";
 
+export function encodeTime(d, h, m) {
+  return d * 24 * 60 + h * 60 + m;
+}
+
 export function decodeTime(t) {
   const dh = Math.floor(t / 60);
   const DD = Math.floor(dh / 24)
@@ -8,6 +12,13 @@ export function decodeTime(t) {
   const hh = (dh % 24).toString().padStart(2, "0");
   const mm = (t % 60).toString().padStart(2, "0");
   return moment(`2022-01-${DD}T${hh}:${mm}`, "YYYY-MM-DDTHH:mm");
+}
+
+export function createTimeslotSet(start, end, step = 5) {
+  return Array.from(
+    { length: (end - start) / step },
+    (_, i) => start + i * step
+  );
 }
 
 /*

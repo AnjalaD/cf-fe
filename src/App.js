@@ -3,6 +3,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import CompanyView from "./views/CompanyView";
+import FindFreeSlotsView from "./views/FindFreeSlotsView";
 import HomeView from "./views/HomeView";
 import StudentsView from "./views/StudentsView";
 
@@ -64,6 +65,12 @@ function App() {
           <Route
             path="/company"
             element={<CompanyView data={data} lastUpdated={lastUpdated} />}
+          />
+          <Route
+            path="/find-free-slots"
+            element={
+              <FindFreeSlotsView data={data} lastUpdated={lastUpdated} />
+            }
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

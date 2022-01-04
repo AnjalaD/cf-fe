@@ -14,6 +14,23 @@ import { CalendarToday } from "@material-ui/icons";
 import { Grid, Link, Paper, Typography } from "@mui/material";
 import moment from "moment";
 
+function AppointmentComponent({ children, data, style, ...restProps }) {
+  console.log({ restProps });
+
+  return (
+    <Appointments.Appointment
+      {...restProps}
+      data={data}
+      style={{
+        ...style,
+        backgroundColor: data.bg,
+      }}
+    >
+      {children}
+    </Appointments.Appointment>
+  );
+}
+
 function ToolTipConent({ appointmentData, ...rest }) {
   return (
     <AppointmentTooltip.Content {...rest} appointmentData={appointmentData}>
@@ -64,9 +81,9 @@ export default function Calender({ events, showData }) {
         <Toolbar />
         <ViewSwitcher />
         <DateNavigator />
-        <DayView startDayHour={8} endDayHour={18} />
-        <WeekView startDayHour={8} endDayHour={18} />
-        <Appointments />
+        <DayView startDayHour={9} endDayHour={18} />
+        <WeekView startDayHour={9} endDayHour={18} />
+        <Appointments appointmentComponent={AppointmentComponent} />
         <AppointmentTooltip showCloseButton contentComponent={ToolTipConent} />
         <CurrentTimeIndicator />
       </Scheduler>
